@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 
 List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"];
 
@@ -76,7 +77,7 @@ Console.WriteLine("När du står och väntar i kön, märker du hur en gammal fa
 Console.WriteLine("Alternativ 1, slåss mot farmor så att hon skärper sig.");
 Console.WriteLine("Alternativ 2, låta farmor tränga sig så att du får din korvmacka långsammare.");
 textMellanrum();
-Console.WriteLine("Vilket väljer du?");
+
 
 while(true){
     Console.WriteLine("Vilket väljer du? Alternativ 1, besegra farmor eller alternativ 2, vänta i kön?");
@@ -117,8 +118,9 @@ Console.ReadLine();
 
 
 static void textMellanrum() {
-    Thread.Sleep(1000);
+    Thread.Sleep(1500);
 }
+
 
 
 
@@ -127,38 +129,68 @@ static int motståndareStrid(int vilkenFiende, List<string> fiender, int hälsa,
 
 while (dinHälsa > 0 || hälsa > 0 ){
 System.Console.WriteLine($"Du har tillgång till 3 attacker");
+
 for (int i = 0; i < dinaAttacker.Count; i++)
 {
-    System.Console.WriteLine($"{dinaAttacker[i]} gör {dinaSkador} i skada");
+    System.Console.WriteLine($"{dinaAttacker[i]} gör {dinaSkador[i]} i skada");
     textMellanrum();
 }
+
+int attackValNum;
+
 while(true){
     System.Console.WriteLine("Vilken attack vill du använda. SKriv 1 till 3.");
     string attackVal = Console.ReadLine();
-   bool attackBool = int.TryParse(attackVal, out int attackValNum );
-    if(attackBool == true){
-        System.Console.WriteLine(" bra jobbat");
+    bool attackBool = int.TryParse(attackVal, out attackValNum );
+
+
+    if(attackBool == false){
+        System.Console.WriteLine("skriv 1 2 eller 3!");
+        textMellanrum();
+    }
+    else if(attackValNum > 3){
+        System.Console.WriteLine("skriv högst 3!");
+        textMellanrum();
+    }
+    else if (attackValNum < 1){
+        System.Console.WriteLine("Skriv minst 1!");
+        textMellanrum();
+    }
+    else{
+        System.Console.WriteLine($"Bra jobbat! du tog {attackValNum}.");
+        attackValNum--;
         textMellanrum();
         break;
     }
-    else if(attackValNum >)
-
+    
 }
 
-
-
+System.Console.WriteLine($"Du använder {dinaAttacker[attackValNum]} och gör {dinaSkador[attackValNum]}!");
+hälsa -= dinaSkador[attackValNum];
 
 System.Console.WriteLine($"{fiender[vilkenFiende]} attackerar med {attacker[slumpa()]} och gör {skada[slumpa()]} i skada");
 dinHälsa -= skada[slumpa()];
 
+System.Console.WriteLine($"Farmor har {hälsa} hp kvar!");
+System.Console.WriteLine($"Du har {dinHälsa} hp kvar!");
+
+Console.ReadLine();
+
 
 }
+
+
 return dinHälsa;
 
 }
 
 
+
+
+
+
+
 static int slumpa(){
-    int slump = Random.Shared.Next(1,4);
+    int slump = Random.Shared.Next(0,3);
     return slump;
 }

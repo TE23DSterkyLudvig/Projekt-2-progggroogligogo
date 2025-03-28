@@ -1,6 +1,8 @@
 ﻿
-using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
+
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"];
 
@@ -125,7 +127,7 @@ static void textMellanrum() {
 
 
 
-static int motståndareStrid(int vilkenFiende, List<string> fiender, int hälsa, int dinHälsa, List<int> skada, List<int> dinaSkador, List<string> attacker, List<string> dinaAttacker, int kebabrulle, int energidricka) {
+static int motståndareStrid(int vilkenFiende, List<string> fiender, int hälsa, int dinHälsa, List<int> skada, List<int> dinaSkador, List<string> attacker, List<string> dinaAttacker, int energidricka, int kebabrulle) {
 
 while (dinHälsa > 0 || hälsa > 0 ){
 System.Console.WriteLine($"Du har tillgång till 3 attacker");
@@ -139,9 +141,12 @@ for (int i = 0; i < dinaAttacker.Count; i++)
 int attackValNum;
 
 while(true){
-    System.Console.WriteLine("Vilken attack vill du använda. SKriv 1 till 3.");
-    string attackVal = Console.ReadLine();
-    bool attackBool = int.TryParse(attackVal, out attackValNum );
+    System.Console.WriteLine("Vilken attack vill du använda. SKriv 1 till 3. Eller powerup");
+    string Val = Console.ReadLine();
+    if (Val.ToLower() == "powerup"){
+
+    }
+    bool attackBool = int.TryParse(Val, out attackValNum );
 
 
     if(attackBool == false){
@@ -174,7 +179,19 @@ dinHälsa -= skada[slumpa()];
 System.Console.WriteLine($"Farmor har {hälsa} hp kvar!");
 System.Console.WriteLine($"Du har {dinHälsa} hp kvar!");
 
+if(dinHälsa <= 0){
+    textMellanrum();
+    System.Console.WriteLine("Du dog!");
+    return dinHälsa;
+}
+else if(hälsa <= 0){
+    textMellanrum();
+    System.Console.WriteLine($"Du dödade {fiender[vilkenFiende]}");
+    return dinHälsa;
+}
+
 Console.ReadLine();
+
 
 
 }
@@ -191,6 +208,24 @@ return dinHälsa;
 
 
 static int slumpa(){
+
     int slump = Random.Shared.Next(0,3);
     return slump;
+}
+
+
+static void energidryck(int dinHälsa, int energidricka) {
+    System.Console.WriteLine($"Du dricker en energidricka och återfår {energidricka} i hp.");
+    dinHälsa += energidricka;
+}
+
+static List<int> kebab( List<int> dinaSkador, int kebabrulle, List<string> dinaAttacker) {
+    for (int i = 0; i < dinaSkador.Count; i++)
+    {
+        dinaSkador[i] *= kebabrulle;
+        textMellanrum();
+        System.Console.WriteLine($"{dinaAttacker[i]} gör nu {dinaSkador[i]} i skada!");
+    }
+    return dinaSkador;
+
 }

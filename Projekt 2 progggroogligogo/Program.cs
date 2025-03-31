@@ -35,7 +35,7 @@ attacker = ["kebabspett", "köttklump", "bepsi"]
 };
 
 int kebabrulle = 2;
-int energidricka = 40;
+int energidricka = 80;
 
 
 Console.WriteLine("                                                      Bertils Liv");
@@ -89,8 +89,9 @@ while(true){
     if(farmorValNum == 1){
         textMellanrum();
         Console.WriteLine("Du väljer att slåss mot farmor!");
-        motståndareStrid(vilkenFiende, fiender ,farmor.Hp, du.Hp, farmor.skada, du.skada, farmor.attacker,du.attacker, kebabrulle, energidricka);
+        motståndareStrid(vilkenFiende, fiender ,farmor.Hp, du.Hp, farmor.skada, du.skada, farmor.attacker,du.attacker, energidricka,kebabrulle);
         vilkenFiende ++;
+        break;
     }
     else if(farmorValNum == 2){
         textMellanrum();
@@ -143,9 +144,24 @@ int attackValNum;
 while(true){
     System.Console.WriteLine("Vilken attack vill du använda. SKriv 1 till 3. Eller powerup");
     string Val = Console.ReadLine();
-    if (Val.ToLower() == "powerup"){
 
+    if (Val.ToLower() == "powerup"){
+        textMellanrum();
+        System.Console.WriteLine("Kebabrulle eller energidricka?");
+        string kraftUpp = Console.ReadLine();
+        
+        if(kraftUpp.ToLower() == "kebabrulle"){
+            System.Console.WriteLine("Du valde kebabrulle");
+            kebab(dinaSkador,kebabrulle,dinaAttacker);
+        }
+
+        else if(kraftUpp.ToLower() == "energidricka"){
+            textMellanrum();
+            System.Console.WriteLine("Du valde energidricka");
+            energidryck(dinHälsa,energidricka);
+        }
     }
+    
     bool attackBool = int.TryParse(Val, out attackValNum );
 
 
@@ -173,7 +189,9 @@ while(true){
 System.Console.WriteLine($"Du använder {dinaAttacker[attackValNum]} och gör {dinaSkador[attackValNum]}!");
 hälsa -= dinaSkador[attackValNum];
 
-System.Console.WriteLine($"{fiender[vilkenFiende]} attackerar med {attacker[slumpa()]} och gör {skada[slumpa()]} i skada");
+int slumptal = slumpa();
+
+System.Console.WriteLine($"{fiender[vilkenFiende]} attackerar med {attacker[slumptal]} och gör {skada[slumptal]} i skada");
 dinHälsa -= skada[slumpa()];
 
 System.Console.WriteLine($"Farmor har {hälsa} hp kvar!");
@@ -191,7 +209,16 @@ else if(hälsa <= 0){
 }
 
 Console.ReadLine();
+if(dinaSkador[0] > 30 || dinaSkador[1] > 40 || dinaSkador[2] > 50){
 
+for (int i = 0; i < dinaSkador.Count; i++)
+{
+    dinaSkador[i] /= kebabrulle;
+}
+
+dinHälsa += skada[slumptal];
+
+}
 
 
 }

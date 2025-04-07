@@ -1,11 +1,20 @@
 ﻿
+System.Console.WriteLine("Nu kör vi");
+textMellanrum();
 
+helaKoden();
+
+
+
+
+static void helaKoden(){
+    
 List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"];
 
 int vilkenFiende = 0;
 
 Motståndare du = new(){
-Hp = 150,
+Hp = 300,
 skada = [30, 40, 50 ],
 attacker = ["Drake","Dissa", "Bingufy"]
 };
@@ -45,7 +54,7 @@ Console.WriteLine("""
 """);
 
 while(true){
-    Console.WriteLine("Är du redo att börja");
+    Console.WriteLine("Är du redo att börja? Skriv ja eller nej!");
     string svar = Console.ReadLine();
     textMellanrum();
     if(svar.ToLower() == "ja"){
@@ -112,10 +121,10 @@ while(true){
 textMellanrum();
 System.Console.WriteLine("Du får din korvmacka och går vidare");
 textMellanrum();
-System.Console.WriteLine("Påväg hemåt igen träffar du Sorkmästaren som av någon anledning vill sno din smörgås. Vad gör du?");
+System.Console.WriteLine("Påväg hemåt igen träffar du Sorkmästaren som av någon anledning vill slår dig. Vad gör du?");
 textMellanrum();
-System.Console.WriteLine(@"Alternativ 1, slåss mot sorkmästaren så att han inte tar din macka.
-Alternativ 2, ge mackan till Sorkmästaren så att han drar därifrån."
+System.Console.WriteLine(@"Alternativ 1, slåss mot sorkmästaren så att han slutar slå dig.
+Alternativ 2, ge in till Sorkmästaren så att han drar därifrån."
 );
 int sorkValNum;
 while(true){
@@ -134,7 +143,7 @@ while(true){
     }
     else if(sorkValNum == 2){
         textMellanrum();
-        Console.WriteLine("Du väljer att ge din korvmacka till Sorkmästaren.");
+        Console.WriteLine("Du väljer att bara stå still nära Sorkmästaren.");
         if(slumpa() == 2){
             textMellanrum();
             System.Console.WriteLine("Han biter din tå, du förlorar 3 hp!");
@@ -149,24 +158,58 @@ while(true){
         } 
 }
 
-textMellanrum();
-if(sorkValNum == 2){
-    System.Console.WriteLine("Du förlorar din macka.");
-}
-else{
-    System.Console.WriteLine("Du äter upp din macka.");
-}
-
+System.Console.WriteLine("Sorkmästaren flyr!");
 textMellanrum();
 
+System.Console.WriteLine("När du kommer hem så märker du att en kebab man står i dörr öppningen med ett spett.");
+textMellanrum();
+System.Console.WriteLine("Han går till attack! Alternativ 1 kämpa emot. Alternativ 2 låt honom smeta dig med kebab.");
+textMellanrum();
+System.Console.WriteLine(@"Alternativ 1
+eller
+alternativ 2?");
+
+string kebabVal;
+
+
+while(true){
+    textMellanrum();
+    System.Console.WriteLine("Vad gör du, skriv 1 eller 2.");
+    kebabVal = Console.ReadLine();
+    int.TryParse(kebabVal, out int kebabValNum);
+
+    if(kebabValNum == 1){
+        textMellanrum();
+        Console.WriteLine("Du väljer att slåss mot kebabmannen!");
+        motståndareStrid(vilkenFiende, fiender ,kebabMan.Hp, du.Hp, kebabMan.skada, du.skada, kebabMan.attacker,du.attacker, energidricka,kebabrulle);
+        död(du.Hp);
+        break;  
+    }
+    else if(kebabValNum == 2){
+        textMellanrum();
+        Console.WriteLine("Du väljer att bli smetad av kebabmannen.");
+        if(slumpa() == 2){
+            textMellanrum();
+            System.Console.WriteLine("Han petar dig med spettet!");
+            du.Hp -= 3;
+        }
+        break;
+    }
+    else{  
+        textMellanrum();
+        System.Console.WriteLine("Testa igen");
+        textMellanrum();
+        } 
+}
+
+System.Console.WriteLine("Kebabmannen försvinner och lämnar endast efter sig en rulle kött.");
+textMellanrum();
+System.Console.WriteLine("Du går och lägger dig och sover.");
+
+stopp();
 
 Console.ReadLine();
-
-
-
-
-
-
+}
 
 
 
@@ -283,10 +326,6 @@ return dinHälsa;
 
 
 
-
-
-
-
 static int slumpa(){
 
     int slump = Random.Shared.Next(0,3);
@@ -316,4 +355,25 @@ static void död(int dinHälsa) {
         System.Console.WriteLine("Du är död, skriv vad som heslt för att avsluta.");
         Environment.Exit(0);
     }
+}
+
+static void stopp() {
+    string stopp;
+  while(true){
+      System.Console.WriteLine("Skriv stopp för att avsluta spelet.");
+      stopp = Console.ReadLine();
+
+      if(stopp.ToLower() == "stopp"){
+        textMellanrum();
+        System.Console.WriteLine("Hejdå!");
+        Thread.Sleep(3000);
+        Environment.Exit(0);
+      }
+      else{
+        textMellanrum();
+        System.Console.WriteLine("Jag såg att du hade skrivit fel när du skriv in stopp, testa igen!");
+        textMellanrum();
+      }
+  }
+
 }

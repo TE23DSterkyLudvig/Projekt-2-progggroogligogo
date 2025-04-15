@@ -73,6 +73,8 @@ while(true){
     }
 }
 
+
+
 Console.WriteLine("Ditt namn är Bertil");
 textMellanrum();
 Console.WriteLine("Du vaknar upp en vanlig morgon och dricker kaffe. Du går sedan ut");
@@ -85,6 +87,8 @@ Console.WriteLine("Alternativ 1, slåss mot farmor så att hon skärper sig.");
 textMellanrum();
 Console.WriteLine("Alternativ 2, låta farmor tränga sig så att du får din korvmacka långsammare.");
 textMellanrum();
+
+
 
 //farmor
 while(true){
@@ -123,6 +127,10 @@ while(true){
 
 textMellanrum();
 System.Console.WriteLine("Du får din korvmacka och går vidare");
+
+
+
+
 textMellanrum();
 System.Console.WriteLine("Påväg hemåt igen träffar du Sorkmästaren som av någon anledning vill slår dig. Vad gör du?");
 textMellanrum();
@@ -166,6 +174,8 @@ while(true){
 System.Console.WriteLine("Sorkmästaren flyr!");
 textMellanrum();
 
+
+
 System.Console.WriteLine("När du kommer hem så märker du att en kebab man står i dörr öppningen med ett spett.");
 textMellanrum();
 System.Console.WriteLine("Han går till attack! Alternativ 1 kämpa emot. Alternativ 2 låt honom smeta dig med kebab.");
@@ -206,6 +216,8 @@ while(true){
         textMellanrum();
         } 
 }
+
+
 // du överlever dagen.
 System.Console.WriteLine("Kebabmannen försvinner och lämnar endast efter sig en rulle kött.");
 textMellanrum();

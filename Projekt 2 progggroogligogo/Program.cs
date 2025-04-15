@@ -1,39 +1,39 @@
-﻿
-System.Console.WriteLine("Nu kör vi");
+﻿System.Console.WriteLine("Nu kör vi");
 textMellanrum();
 
 helaKoden();
 
 
 
-
+//innehåller hela huvudkoden
 static void helaKoden(){
     
 List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"];
 
 int vilkenFiende = 0;
 
-Motståndare du = new(){
+// jag använder min klass kämpe för att skapa alla olika kämpar bland annat spelaren.
+kämpe du = new(){
 Hp = 300,
 skada = [30, 40, 50 ],
 attacker = ["Drake","Dissa", "Bingufy"]
 };
 
-Motståndare farmor = new(){
+kämpe farmor = new(){
 Hp = 200,
 skada = [20, 30, 40 ],
 attacker = ["godis","löstandshugg", "shotgun"]
 };
 
 
-Motståndare sorkMästaren = new() {
+kämpe sorkMästaren = new() {
 Hp = 120,
 skada = [10,20,Random.Shared.Next(1,50)],
 attacker = ["gnaga", "sorkattack", "digerdöden"]
 };
 
 
-Motståndare kebabMan =new() {
+kämpe kebabMan =new() {
 Hp = 150,
 skada = [20, Random.Shared.Next(5,40), 50],
 attacker = ["kebabspett", "köttklump", "bepsi"]  
@@ -86,13 +86,14 @@ textMellanrum();
 Console.WriteLine("Alternativ 2, låta farmor tränga sig så att du får din korvmacka långsammare.");
 textMellanrum();
 
-
+//farmor
 while(true){
     textMellanrum();
     Console.WriteLine("Vilket väljer du? Alternativ 1, besegra farmor eller alternativ 2, vänta i kön?");
     string farmorVal = Console.ReadLine();
     int.TryParse( farmorVal, out int farmorValNum);
 
+// om man väljer att attackera
     if(farmorValNum == 1){
         textMellanrum();
         Console.WriteLine("Du väljer att slåss mot farmor!");
@@ -101,6 +102,7 @@ while(true){
         död(du.Hp);
         break;
     }
+    // om man väljer att inte göra något.
     else if(farmorValNum == 2){
         textMellanrum();
         Console.WriteLine("Du väljer att låta farmor tränga sig, vilket leder till att du får din korvmacka långsammare.");
@@ -111,6 +113,7 @@ while(true){
         }
         break;
     }
+    // om man skriver fel
     else{
         textMellanrum();
         System.Console.WriteLine("Testa igen");
@@ -126,6 +129,8 @@ textMellanrum();
 System.Console.WriteLine(@"Alternativ 1, slåss mot sorkmästaren så att han slutar slå dig.
 Alternativ 2, ge in till Sorkmästaren så att han drar därifrån."
 );
+
+//Sorkmästaren
 int sorkValNum;
 while(true){
     textMellanrum();
@@ -171,7 +176,7 @@ alternativ 2?");
 
 string kebabVal;
 
-
+// Kebabmannen.
 while(true){
     textMellanrum();
     System.Console.WriteLine("Vad gör du, skriv 1 eller 2.");
@@ -190,7 +195,7 @@ while(true){
         Console.WriteLine("Du väljer att bli smetad av kebabmannen.");
         if(slumpa() == 2){
             textMellanrum();
-            System.Console.WriteLine("Han petar dig med spettet!");
+            System.Console.WriteLine("Han petar dig med spettet och du förlorar 3 i hälsa.");
             du.Hp -= 3;
         }
         break;
@@ -201,7 +206,7 @@ while(true){
         textMellanrum();
         } 
 }
-
+// du överlever dagen.
 System.Console.WriteLine("Kebabmannen försvinner och lämnar endast efter sig en rulle kött.");
 textMellanrum();
 System.Console.WriteLine("Du går och lägger dig och sover.");
@@ -212,7 +217,7 @@ Console.ReadLine();
 }
 
 
-
+//Återanvändbar funktion som ger tidsmellrum mellan skriven text
 static void textMellanrum() {
     Thread.Sleep(1500);
 }
@@ -220,7 +225,7 @@ static void textMellanrum() {
 
 
 
-
+// själva stridsprocessen
 static int motståndareStrid(int vilkenFiende, List<string> fiender, int hälsa, int dinHälsa, List<int> skada, List<int> dinaSkador, List<string> attacker, List<string> dinaAttacker, int energidricka, int kebabrulle) {
 
 int slumptal = slumpa();
@@ -228,11 +233,16 @@ int slumptal = slumpa();
 while (dinHälsa > 0 || hälsa > 0 ){
 System.Console.WriteLine($"Du har tillgång till 3 attacker");
 
+// Skriver ut alla attacker man har tillgång till.
 for (int i = 0; i < dinaAttacker.Count; i++)
 {
     System.Console.WriteLine($"{dinaAttacker[i]} gör {dinaSkador[i]} i skada");
     textMellanrum();
 }
+
+System.Console.WriteLine($"Du har {dinHälsa} i hälsa.");
+textMellanrum();
+System.Console.WriteLine($"{fiender[vilkenFiende]} har {hälsa} i hälsa.");
 
 int attackValNum;
 
@@ -240,6 +250,7 @@ while(true){
     System.Console.WriteLine("Vilken attack vill du använda. SKriv 1 till 3. Eller powerup");
     string Val = Console.ReadLine();
 
+// ifall man väljer en powerup.
     if (Val.ToLower() == "powerup"){
         textMellanrum();
         System.Console.WriteLine("Kebabrulle eller energidricka?");
@@ -261,9 +272,18 @@ while(true){
     bool attackBool = int.TryParse(Val, out attackValNum );
 
 
-    if(attackBool == false){
+    if(attackBool == false ){
+        // om val är powerup så ignoreras attackBool
+        if(Val.ToLower() == "powerup"){
+            System.Console.WriteLine("Du har använt en powerup!");
+            textMellanrum();
+        }
+
+        else{
         System.Console.WriteLine("skriv 1 2 eller 3!");
         textMellanrum();
+        }
+
     }
     else if(attackValNum > 3){
         System.Console.WriteLine("skriv högst 3!");
@@ -281,15 +301,20 @@ while(true){
     }
     
 }
-
+ textMellanrum();
 System.Console.WriteLine($"Du använder {dinaAttacker[attackValNum]} och gör {dinaSkador[attackValNum]}!");
 hälsa -= dinaSkador[attackValNum];
 
 
-
+ textMellanrum();
 System.Console.WriteLine($"{fiender[vilkenFiende]} attackerar med {attacker[slumptal]} och gör {skada[slumptal]} i skada");
-dinHälsa -= skada[slumpa()];
+dinHälsa -= skada[slumptal];
 
+//ifall någon hälsa blir under noll blir hälsa istället noll.
+hälsa = Math.Max(0,hälsa); ;
+dinHälsa = Math.Max(0,dinHälsa);
+
+textMellanrum();
 System.Console.WriteLine($"Farmor har {hälsa} hp kvar!");
 System.Console.WriteLine($"Du har {dinHälsa} hp kvar!");
 
@@ -304,7 +329,11 @@ else if(hälsa <= 0){
     return dinHälsa;
 }
 
+textMellanrum();
+System.Console.WriteLine("Tryck enter för att fortsätta!");
+
 Console.ReadLine();
+
 if(dinaSkador[0] > 30 || dinaSkador[1] > 40 || dinaSkador[2] > 50){
 
 for (int i = 0; i < dinaSkador.Count; i++)
@@ -325,20 +354,23 @@ return dinHälsa;
 }
 
 
-
+//En funktion som ger ett slumptal varje gång.
 static int slumpa(){
 
-    int slump = Random.Shared.Next(0,3);
+    int slump = Random.Shared.Next(0,3); // ett tal från 0 och 2
     return slump;
 }
 
-
+//En powerup som ger tillbacka hälsa
 static void energidryck(int dinHälsa, int energidricka) {
     System.Console.WriteLine($"Du dricker en energidricka och återfår {energidricka} i hp.");
     dinHälsa += energidricka;
 }
 
+// En powerup som dubblar den skada du gör.
 static List<int> kebab( List<int> dinaSkador, int kebabrulle, List<string> dinaAttacker) {
+
+    // en For loop som dubblar alla listvärden.
     for (int i = 0; i < dinaSkador.Count; i++)
     {
         dinaSkador[i] *= kebabrulle;
@@ -349,24 +381,30 @@ static List<int> kebab( List<int> dinaSkador, int kebabrulle, List<string> dinaA
 
 }
 
-
+// En funktion som kollar ifall du är död)
 static void död(int dinHälsa) {
     if(dinHälsa <= 0){
         System.Console.WriteLine("Du är död, skriv vad som heslt för att avsluta.");
-        Environment.Exit(0);
+        Console.ReadLine();
+        Environment.Exit(0); // stänger ner programmet. om dinhälsa är 0
     }
 }
 
+//Själva avslutningen av spelet.
 static void stopp() {
+
     string stopp;
+
   while(true){
+
       System.Console.WriteLine("Skriv stopp för att avsluta spelet.");
       stopp = Console.ReadLine();
+
 
       if(stopp.ToLower() == "stopp"){
         textMellanrum();
         System.Console.WriteLine("Hejdå!");
-        Thread.Sleep(3000);
+        Thread.Sleep(3000); // så att man hinner inse att spelet är slut.
         Environment.Exit(0);
       }
       else{

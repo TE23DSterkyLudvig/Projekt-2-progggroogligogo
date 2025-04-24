@@ -1,14 +1,14 @@
 ﻿System.Console.WriteLine("Nu kör vi");
 textMellanrum();
 
-helaKoden();
+helaKoden();// Koden i en funktion
 
 
 
 //innehåller hela huvudkoden
 static void helaKoden(){
     
-List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"];
+List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"]; // Jag använder listor här för att jag känner att det är skönare att arbeta med.
 
 int vilkenFiende = 0;
 
@@ -42,7 +42,7 @@ attacker = ["kebabspett", "köttklump", "bepsi"]
 int kebabrulle = 2;
 int energidricka = 80;
 
-
+//Loggan
 Console.WriteLine("                                                      Bertils Liv");
 Console.WriteLine("""
                             __________               __  .__.__    ___.                 
@@ -52,7 +52,7 @@ Console.WriteLine("""
                              |______  /\___  >__|   |__| |__|____/  |___  /\____// ____|
                                     \/     \/                           \/       \/    
 """);
-
+//Om man vill börja
 while(true){
     Console.WriteLine("Är du redo att börja? Skriv ja eller nej!");
     string svar = Console.ReadLine();
@@ -87,8 +87,6 @@ Console.WriteLine("Alternativ 1, slåss mot farmor så att hon skärper sig.");
 textMellanrum();
 Console.WriteLine("Alternativ 2, låta farmor tränga sig så att du får din korvmacka långsammare.");
 textMellanrum();
-
-
 
 //farmor
 while(true){
@@ -330,6 +328,7 @@ textMellanrum();
 System.Console.WriteLine($"Farmor har {hälsa} hp kvar!");
 System.Console.WriteLine($"Du har {dinHälsa} hp kvar!");
 
+// om man dör eller fienden dog
 if(dinHälsa <= 0){
     textMellanrum();
     System.Console.WriteLine("Du dog!");
@@ -346,6 +345,8 @@ System.Console.WriteLine("Tryck enter för att fortsätta!");
 
 Console.ReadLine();
 
+//Återställer den orginella attackskadan
+
 if(dinaSkador[0] > 30 || dinaSkador[1] > 40 || dinaSkador[2] > 50){
 
 for (int i = 0; i < dinaSkador.Count; i++)
@@ -360,7 +361,7 @@ dinHälsa += skada[slumptal];
 
 }
 
-
+//Retunerar den hälsa du har kvar;
 return dinHälsa;
 
 }
@@ -393,7 +394,7 @@ static List<int> kebab( List<int> dinaSkador, int kebabrulle, List<string> dinaA
 
 }
 
-// En funktion som kollar ifall du är död)
+// En funktion som kollar ifall du är död
 static void död(int dinHälsa) {
     if(dinHälsa <= 0){
         System.Console.WriteLine("Du är död, skriv vad som heslt för att avsluta.");

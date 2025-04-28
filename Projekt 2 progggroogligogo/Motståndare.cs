@@ -2,7 +2,7 @@ public class kämpe
 {
 public int hp;
 
-// jag använder listor för att jag är mer van vid dem och jag tycker de är enklare att använda.
+// jag använder arrayer för att det bara är bestämma värden
 public int[] skada = [];
 
 public string[] attacker = [];

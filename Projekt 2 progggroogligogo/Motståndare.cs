@@ -1,9 +1,9 @@
 public class kämpe
 {
-public int Hp;
+public int hp;
 
 // jag använder listor för att jag är mer van vid dem och jag tycker de är enklare att använda.
-public List<int> skada = new();
+public int[] skada = [];
 
-public List<string> attacker = new();
+public string[] attacker = [];
 }

@@ -1,40 +1,40 @@
 ﻿System.Console.WriteLine("Nu kör vi");
 Textmellanrum();
 
-helaKoden();// Koden i en funktion
+HelaKoden();// Koden i en funktion
 
 
 
 //innehåller hela huvudkoden
-static void helaKoden(){
+static void HelaKoden(){
     
-List<string> fiender = ["farmoder","sorkMästare", "kebabMannen"]; // Jag använder listor här för att jag känner att det är skönare att arbeta med.
+string[] fiender = ["farmoder","sorkMästare", "kebabMannen"]; // Jag använder array här för att jag inte kommer att ändra innehållet.
 
 int vilkenFiende = 0;
 
 // jag använder min klass kämpe för att skapa alla olika kämpar bland annat spelaren.
 kämpe du = new(){
-Hp = 300,
+hp = 300,
 skada = [30, 40, 50 ],
 attacker = ["Drake","Dissa", "Bingufy"]
 };
 
 kämpe farmor = new(){
-Hp = 200,
+hp = 200,
 skada = [20, 30, 40 ],
 attacker = ["godis","löstandshugg", "shotgun"]
 };
 
 
 kämpe sorkMästaren = new() {
-Hp = 120,
+hp = 120,
 skada = [10,20,Random.Shared.Next(1,50)],
 attacker = ["gnaga", "sorkattack", "digerdöden"]
 };
 
 
 kämpe kebabMan =new() {
-Hp = 150,
+hp = 150,
 skada = [20, Random.Shared.Next(5,40), 50],
 attacker = ["kebabspett", "köttklump", "bepsi"]  
 };
@@ -100,9 +100,9 @@ while(true){
         Textmellanrum();
         Console.WriteLine("Du väljer att slåss mot farmor!");
         Textmellanrum();
-        Motståndarestrid(vilkenFiende, fiender ,farmor.Hp, du.Hp, farmor.skada, du.skada, farmor.attacker,du.attacker, energidricka,kebabrulle);
+        MotståndareStrid(vilkenFiende, fiender ,farmor.hp, du.hp, farmor.skada, du.skada, farmor.attacker,du.attacker, energidricka,kebabrulle);
         vilkenFiende ++;
-        Död(du.Hp);
+        Död(du.hp);
         break;
     }
     // om man väljer att inte göra något.
@@ -112,7 +112,7 @@ while(true){
         if(Slumpa() == 2){
             Textmellanrum();
             System.Console.WriteLine("Hon knuffar dig våldsamt, du förlorar 2 hp!");
-            du.Hp -= 2;
+            du.hp -= 2;
         }
         break;
     }
@@ -149,9 +149,9 @@ while(true){
         Textmellanrum();
         Console.WriteLine("Du väljer att slåss mot Sorkmästaren!");
         Textmellanrum();
-        Motståndarestrid(vilkenFiende, fiender ,sorkMästaren.Hp, du.Hp, sorkMästaren.skada, du.skada, sorkMästaren.attacker,du.attacker, energidricka,kebabrulle);
+        MotståndareStrid(vilkenFiende, fiender ,sorkMästaren.hp, du.hp, sorkMästaren.skada, du.skada, sorkMästaren.attacker,du.attacker, energidricka,kebabrulle);
         vilkenFiende ++;
-        Död(du.Hp);
+        Död(du.hp);
         break;  
     }
     else if(sorkValNum == 2){
@@ -160,7 +160,7 @@ while(true){
         if(Slumpa() == 2){
             Textmellanrum();
             System.Console.WriteLine("Han biter din tå, du förlorar 3 hp!");
-            du.Hp -= 3;
+            du.hp -= 3;
         }
         break;
     }
@@ -197,8 +197,8 @@ while(true){
         Textmellanrum();
         Console.WriteLine("Du väljer att slåss mot kebabmannen!");
         Textmellanrum();
-        Motståndarestrid(vilkenFiende, fiender ,kebabMan.Hp, du.Hp, kebabMan.skada, du.skada, kebabMan.attacker,du.attacker, energidricka,kebabrulle);
-        Död(du.Hp);
+        MotståndareStrid(vilkenFiende, fiender ,kebabMan.hp, du.hp, kebabMan.skada, du.skada, kebabMan.attacker,du.attacker, energidricka,kebabrulle);
+        Död(du.hp);
         break;  
     }
     else if(kebabValNum == 2){
@@ -207,7 +207,7 @@ while(true){
         if(Slumpa() == 2){
             Textmellanrum();
             System.Console.WriteLine("Han petar dig med spettet och du förlorar 3 i hälsa.");
-            du.Hp -= 3;
+            du.hp -= 3;
         }
         break;
     }
@@ -239,7 +239,7 @@ static void Textmellanrum() {
 
 
 // själva stridsprocessen
-static int Motståndarestrid(int vilkenFiende, List<string> fiender, int hälsa, int dinHälsa, List<int> skada, List<int> dinaSkador, List<string> attacker, List<string> dinaAttacker, int energidricka, int kebabrulle) {
+static int MotståndareStrid(int vilkenFiende, string[] fiender, int hälsa, int dinHälsa, int[] skada, int[] dinaSkador, string[] attacker, string[] dinaAttacker, int energidricka, int kebabrulle) {
 
 int slumptal = Slumpa();
 Textmellanrum();
@@ -247,7 +247,7 @@ while (dinHälsa > 0 || hälsa > 0 ){
 System.Console.WriteLine($"Du har tillgång till 3 attacker");
 
 // Skriver ut alla attacker man har tillgång till.
-for (int i = 0; i < dinaAttacker.Count; i++)
+for (int i = 0; i < dinaAttacker.Length; i++)
 {
     System.Console.WriteLine($"{i}.{dinaAttacker[i]} gör {dinaSkador[i]} i skada");
     Textmellanrum();
@@ -352,7 +352,7 @@ Console.ReadLine();
 
 if(dinaSkador[0] > 30 || dinaSkador[1] > 40 || dinaSkador[2] > 50){
 
-for (int i = 0; i < dinaSkador.Count; i++)
+for (int i = 0; i < dinaSkador.Length; i++)
 {
     dinaSkador[i] /= kebabrulle;
 }
@@ -385,10 +385,10 @@ static int Energidryck(int dinHälsa, int energidricka) {
 }
 
 // En powerup som dubblar den skada du gör.
-static List<int> Kebab( List<int> dinaSkador, int kebabrulle, List<string> dinaAttacker) {
+static int[] Kebab( int[] dinaSkador, int kebabrulle, string[] dinaAttacker) {
 
     // en For loop som dubblar alla listvärden.
-    for (int i = 0; i < dinaSkador.Count; i++)
+    for (int i = 0; i < dinaSkador.Length; i++)
     {
         dinaSkador[i] *= kebabrulle;
         Textmellanrum();

@@ -8,7 +8,7 @@ HelaKoden();// Koden i en funktion
 //innehåller hela huvudkoden
 static void HelaKoden(){
     
-string[] fiender = ["farmoder","sorkMästare", "kebabMannen"]; // Jag använder array här för att jag inte kommer att ändra innehållet.
+string[] fiender = ["farmoder","sorkMästare", "kebabMannen"]; // Jag använder array här för att jag inte kommer lägga till eller ta bort innehåll..
 
 int vilkenFiende = 0;
 
